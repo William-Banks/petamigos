@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PetAmigo</title>
+
+  <!-- Fonte Roboto -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
+  <header class="header">
+    <div class="logo-container">
+      <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo PetAmigo" class="logo" />
+    </div>
+    <nav class="nav-menu">
+      <ul>
+        <li><a href="#" class="menu-link active" data-section="home">Home</a></li>
+        <li><a href="#" class="menu-link" data-section="produtos">Produtos</a></li>
+        <li><a href="#" class="menu-link" data-section="pets">Pets</a></li>
+        <li><a href="#" class="menu-link" data-section="servicos">Serviços</a></li>
+        <li><a href="#" class="menu-link" data-section="contato">Contato</a></li>
+      </ul>
+    </nav>
+    <button id="btnLogin" class="btn-login">Login</button>
+  </header>
+
+  <main class="main-content">
+    <!-- Seções grid -->
+    <section id="home" class="section active">
+      <h2>Pets em Destaque</h2>
+      <div class="grid" id="destaque-pets"></div>
+
+      <h2>Produtos em Promoção</h2>
+      <div class="grid" id="produtos-promocao"></div>
+
+      <h2>Outros Pets</h2>
+      <div class="grid" id="outros-pets"></div>
+
+      <h2>Serviços</h2>
+      <div class="grid" id="servicos"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo PetAmigo" class="logo-footer" />
+    <div class="social-icons">
+      <img src="{{ url_for('static', filename='images/twitter.svg') }}" alt="Twitter" />
+      <img src="{{ url_for('static', filename='images/instagram.svg') }}" alt="Instagram" />
+      <img src="{{ url_for('static', filename='images/youtube.svg') }}" alt="YouTube" />
+      <img src="{{ url_for('static', filename='images/tiktok.svg') }}" alt="TikTok" />
+    </div>
+    <p>Copyright &copy; 2025 PetAmigo</p>
+  </footer>
+
+  <!-- Modal Login -->
+  <div id="modalLogin" class="modal hidden">
+    <div class="modal-content">
+      <header class="modal-header">
+        <h3>Login</h3>
+        <button class="modal-close" id="closeLogin">&times;</button>
+      </header>
+      <form id="loginForm" novalidate>
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" required />
+        <span class="error-message" id="emailError"></span>
+
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" name="senha" required minlength="3" />
+        <span class="error-message" id="senhaError"></span>
+
+        <div class="modal-buttons">
+          <button type="button" class="btn-cancel" id="cancelLogin">Cancelar</button>
+          <button type="submit" class="btn-submit">Entrar</button>
+        </div>
+        <p class="error-message" id="loginError"></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Detalhes Post -->
+  <div id="modalDetalhes" class="modal hidden">
+    <div class="modal-content detalhes-content">
+      <header class="modal-header">
+        <h3 id="modalTitulo"></h3>
+        <button class="modal-close" id="closeDetalhes">&times;</button>
+      </header>
+      <img id="modalImagem" alt="Imagem do post" />
+      <div class="interacoes">
+        <button id="btnLike" class="btn-like" title="Curtir">
+          <img src="{{ url_for('static', filename='images/coracao.svg') }}" alt="Curtir" />
+          <span id="likeCount">0</span>
+        </button>
+        <button id="btnComentario" class="btn-comment" title="Comentários">
+          <img src="{{ url_for('static', filename='images/chat.svg') }}" alt="Comentários" />
+          <span id="comentarioCount">0</span>
+        </button>
+      </div>
+      <div class="area-comentario">
+        <input type="text" id="novoComentario" placeholder="Adicionar um comentário..." maxlength="250" />
+        <button id="btnSend" title="Enviar comentário">
+          <img src="{{ url_for('static', filename='images/send.svg') }}" alt="Enviar" />
+        </button>
+      </div>
+      <p class="error-message" id="comentarioErro"></p>
+      <ul id="listaComentarios"></ul>
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script type="module" src="{{ url_for('static', filename='js/main.js') }}"></script>
+  <script type="module" src="{{ url_for('static', filename='js/api.js') }}"></script>
+</body>
+</html>
